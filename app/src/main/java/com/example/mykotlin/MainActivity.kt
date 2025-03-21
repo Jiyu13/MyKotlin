@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -31,7 +32,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyKotlinTheme {
-                CreateCircle()
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Surface(modifier = Modifier.padding(innerPadding)) {
+                        MyApp()
+                    }
+                }
             }
         }
     }
@@ -43,7 +48,7 @@ fun MyApp() {
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFF546E7A)
     ) {
-        Text("Hello")
+        CreateCircle()
     }
 }
 
