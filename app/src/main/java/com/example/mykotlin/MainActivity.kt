@@ -1,9 +1,11 @@
 package com.example.mykotlin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -29,7 +31,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyKotlinTheme {
-
+                CreateCircle()
             }
         }
     }
@@ -48,9 +50,13 @@ fun MyApp() {
 @Preview
 @Composable
 fun CreateCircle() {
-    Card(
-        modifier = Modifier.padding(3.dp).size(45.dp),
-        shape = CircleShape
+    Card(modifier = Modifier
+        .padding(3.dp)
+        .size(105.dp)
+        .clickable {
+            Log.d("Tap", "CreateCircle: Tap")
+        },
+        shape = CircleShape,
     ) {
         Box(
             modifier = Modifier.fillMaxSize(),
