@@ -68,10 +68,14 @@ fun MyApp() {
         ) {
             Text(
                 text = "$100",
-                style = TextStyle(color = Color.White, fontSize = 19.sp, fontWeight = FontWeight.ExtraBold)
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 19.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(130.dp))
 
             CreateCircle()
         }
