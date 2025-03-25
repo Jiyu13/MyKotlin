@@ -33,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.node.CanFocusChecker.up
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -82,19 +83,19 @@ fun MyApp() {
 
     }
 }
-
+//  create state without by keyword
 @Preview
 @Composable
 fun CreateCircle() {
-    var moneyCounter by remember {
+    var moneyCounter = remember {
         mutableIntStateOf(0)
     }
     Card(modifier = Modifier
         .padding(3.dp)
         .size(105.dp)
         .clickable {
-            moneyCounter += 1
-            Log.d("counter", "$moneyCounter")
+            moneyCounter.value += 1
+            Log.d("counter", "${moneyCounter.value}")
         },
         shape = CircleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
@@ -105,12 +106,41 @@ fun CreateCircle() {
         ) {
             Text(
                 modifier = Modifier,
-                text = "Tap $moneyCounter"
+                text = "Tap ${moneyCounter.intValue}"
             )
         }
 
     }
 }
+
+//@Preview
+//@Composable
+//fun CreateCircle() {
+//    var moneyCounter by remember {
+//        mutableIntStateOf(0)
+//    }
+//    Card(modifier = Modifier
+//        .padding(3.dp)
+//        .size(105.dp)
+//        .clickable {
+//            moneyCounter += 1
+//            Log.d("counter", "$moneyCounter")
+//        },
+//        shape = CircleShape,
+//        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+//    ) {
+//        Box(
+//            modifier = Modifier.fillMaxSize(),
+//            contentAlignment = Alignment.Center
+//        ) {
+//            Text(
+//                modifier = Modifier,
+//                text = "Tap $moneyCounter"
+//            )
+//        }
+//
+//    }
+//}
 
 
 
