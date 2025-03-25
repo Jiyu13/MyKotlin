@@ -105,7 +105,7 @@ fun CreateCircle() {
         ) {
             Text(
                 modifier = Modifier,
-                text = "Tap"
+                text = "Tap $moneyCounter"
             )
         }
 
