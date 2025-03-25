@@ -33,7 +33,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.node.CanFocusChecker.up
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -59,6 +58,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp() {
+    var moneyCounter = remember {
+        mutableIntStateOf(0)
+    }
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFF546E7A)
@@ -68,7 +70,7 @@ fun MyApp() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                text = "$100",
+                text = "$${moneyCounter.value}",
                 style = TextStyle(
                     color = Color.White,
                     fontSize = 19.sp,
@@ -78,24 +80,30 @@ fun MyApp() {
 
             Spacer(modifier = Modifier.height(130.dp))
 
-            CreateCircle()
+            CreateCircle(moneyCounter = moneyCounter.value) {
+                moneyCounter.value = it + 1
+            }
         }
 
     }
 }
 //  create state without by keyword
-@Preview
+//@Preview
 @Composable
-fun CreateCircle() {
-    var moneyCounter = remember {
-        mutableIntStateOf(0)
-    }
+fun CreateCircle(
+    moneyCounter: Int = 0,
+    updateMoneyCounter: (Int) -> Unit
+) {
+    // //move it up to its parent
+    //var moneyCounter = remember {
+    //    mutableIntStateOf(0)
+    //}
     Card(modifier = Modifier
         .padding(3.dp)
         .size(105.dp)
         .clickable {
-            moneyCounter.value += 1
-            Log.d("counter", "${moneyCounter.value}")
+
+            updateMoneyCounter(moneyCounter)
         },
         shape = CircleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
@@ -106,7 +114,7 @@ fun CreateCircle() {
         ) {
             Text(
                 modifier = Modifier,
-                text = "Tap ${moneyCounter.intValue}"
+                text = "Tap"
             )
         }
 
