@@ -80,8 +80,8 @@ fun MyApp() {
 
             Spacer(modifier = Modifier.height(130.dp))
 
-            CreateCircle(moneyCounter = moneyCounter.value) {
-                moneyCounter.value = it + 1
+            CreateCircle(moneyCounter = moneyCounter.value) { newValue ->
+                moneyCounter.value = newValue
             }
         }
 
@@ -102,8 +102,7 @@ fun CreateCircle(
         .padding(3.dp)
         .size(105.dp)
         .clickable {
-
-            updateMoneyCounter(moneyCounter)
+            updateMoneyCounter(moneyCounter + 1)
         },
         shape = CircleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
